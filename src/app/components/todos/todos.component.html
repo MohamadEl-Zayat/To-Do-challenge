@@ -1,0 +1,41 @@
+	<div>
+	<h1 class="title">"Just go out there and do what you have to do"~Martina Navratilova</h1>
+	<div class="steps">
+		<h3>Create a new list here:</h3>
+		<h4 class="header">Date</h4>
+		<form>
+			<input type="date" name="date" [(ngModel)] = "todos.date" placeholder="Date...">
+		</form>
+		<h4 class="header">Add Task</h4>
+		<form (submit)="addTask()">
+			<input id="task" type="text" name="text" [(ngModel)] = "text" placeholder="Task..." autocomplete="off">
+			<input type="submit" class="button addbtn" value="add">
+		</form>
+	</div>
+	<div class="list">
+		<h3> Date : {{todos.date}}</h3>
+		<h1>To do List</h1>
+		<ul class="tasks">
+			<li *ngFor="let task of todos.tasks">
+				{{task.text}}
+				<br>
+				<button class="removebtn button" *ngIf="!isDone(task.text)" (click)="deleteTask(task.text)">Remove</button>
+				<button class="checkbtn button" *ngIf="!isDone(task.text)" (click)="checkTask(task.text)">Check</button>
+			</li>
+		</ul>
+		<button class="button createbtn" (click)="newList()">Create New List</button>
+	</div>
+	<div>
+		<h1>Previous ToDo Lists</h1>
+		<ul *ngFor = "let list of lists">
+		Date: {{list.date}} <br>
+		To Do:
+			<li *ngFor = "let task of list.tasks">
+			{{task.text}}
+			</li>
+		</ul>
+	</div>
+	</div>
+
+
+
